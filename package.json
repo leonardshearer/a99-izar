@@ -1,0 +1,13 @@
+{
+  "name": "izar",
+  "version": "1.0.0",
+  "description": "Locational COVID-19 Sentiment Analysis",
+  "main": "index.js",
+  "scripts": {
+    "install": "to do",
+    "test": "to do",
+    "run": "to do"
+  },
+  "author": "Leonard Shearer, Krishna Sudhir, Neil Thupili, Joseph Wang, Yuyu Zhang",
+  "license": "GPL-3.0-or-later"
+}
