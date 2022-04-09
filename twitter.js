@@ -18,8 +18,7 @@ var client = new Twitter({
 });
  
 // var st  = String(state)
-var params = {q: 'covid'};
-// var params = {has: 'covid',lang:en,place:state};
+var params = {q:'covid AND lang:en'};
 client.get('search/tweets', params, function(error, tweets, response) {
   console.log(tweets);
 });
@@ -27,5 +26,4 @@ client.get('search/tweets', params, function(error, tweets, response) {
 //and for queries
 // only log text
 //variable for state
-//english 
 //qualilty check tweets
