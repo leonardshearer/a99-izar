@@ -3,7 +3,7 @@
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
- 
+var Sentiment = require('sentiment'); 
 
 const apikey = "7bBZ96F5uNzss9lKSFtMoFiEw"
 const ask = "nuHAMKVJUgLnMEAuAhrP8Makd1UkxJcHU04VUdY1Wbmp5BEfK1"
@@ -20,14 +20,15 @@ var client = new Twitter({
 // var st  = String(state)
 var params = {q:'covid AND lang:en'};
 client.get('search/tweets', params, function(error, tweets, response) {
-//  console.log(tweets);
-  //const myObj = JSON.parse(tweets.toString());
+let allTweets = "";
 
   for (let i = 0; i < tweets.statuses.length;i++){
     const stat = tweets.statuses[i];
-    console.log(stat.text);
-    console.log(stat.lang);
+    allTweets += " " + stat.text;
   }
+  var sentiment = new Sentiment();
+  var result = sentiment.analyze(allTweets);
+  console.dir(result);
 });
 
 
