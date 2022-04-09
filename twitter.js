@@ -21,8 +21,16 @@ var client = new Twitter({
 var params = {q: 'covid'};
 // var params = {has: 'covid',lang:en,place:state};
 client.get('search/tweets', params, function(error, tweets, response) {
-  console.log(tweets);
+//  console.log(tweets);
+  //const myObj = JSON.parse(tweets.toString());
+
+  for (let i = 0; i < tweets.statuses.length;i++){
+    const stat = tweets.statuses[i];
+    console.log(stat.text);
+    console.log(stat.lang);
+  }
 });
+
 
 //and for queries
 // only log text
