@@ -1,3 +1,4 @@
+
 {
   "name": "izar",
   "version": "1.0.0",
@@ -8,9 +9,12 @@
     "test": "to do",
     "run": "to do"
   },
-  "author": "Leonard Shearer, Krishna Sudhir, Neil Thupili, Joseph Wang, Yuyu Zhang",
-  "license": "GPL-3.0-or-later",
+  
   "dependencies": {
-    "needle": "^3.1.0"
-  }
+    "dotenv": "^16.0.0",
+    "twitter": "^1.7.1"
+  },
+  "author": "Leonard Shearer, Krishna Sudhir, Neil Thupili, Joseph Wang, Yuyu Zhang",
+  "license": "GPL-3.0-or-later"
 }
+
