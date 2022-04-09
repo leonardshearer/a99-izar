@@ -9,5 +9,8 @@
     "run": "to do"
   },
   "author": "Leonard Shearer, Krishna Sudhir, Neil Thupili, Joseph Wang, Yuyu Zhang",
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "needle": "^3.1.0"
+  }
 }
