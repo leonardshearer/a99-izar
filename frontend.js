@@ -3,6 +3,8 @@
 var globalVariable={
     state : "South Carolina"
  };
+
+ //make state dynamic upon input
  module.exports = {globalVariable};
 
 //ignore for  now
