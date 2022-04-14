@@ -1,5 +1,5 @@
 // import state from frontend.js
-
+const { globalVariable } = require('./frontend');
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
@@ -16,9 +16,9 @@ var client = new Twitter({
   access_token_key: at, 
   access_token_secret: ats
 });
- 
-// var st  = String(state)
-var params = {q:'covid AND lang:en'};
+
+var str = "covid " + globalVariable.state +  " lang:en"
+var params = {q:str};
 client.get('search/tweets', params, function(error, tweets, response) {
 let allTweets = "";
 
@@ -31,8 +31,7 @@ let allTweets = "";
   console.dir(result);
 });
 
-
-//and for queries
 // only log text
 //variable for state
-//qualilty check tweets
+//qualilty check tweets(other search terms)
+
