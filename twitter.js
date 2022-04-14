@@ -3,7 +3,7 @@ const { globalVariable } = require('./frontend');
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
- 
+var Sentiment = require('sentiment'); 
 
 const apikey = "7bBZ96F5uNzss9lKSFtMoFiEw"
 const ask = "nuHAMKVJUgLnMEAuAhrP8Makd1UkxJcHU04VUdY1Wbmp5BEfK1"
@@ -20,9 +20,18 @@ var client = new Twitter({
 var str = "covid " + globalVariable.state +  " lang:en"
 var params = {q:str};
 client.get('search/tweets', params, function(error, tweets, response) {
-  console.log(tweets);
+let allTweets = "";
+
+  for (let i = 0; i < tweets.statuses.length;i++){
+    const stat = tweets.statuses[i];
+    allTweets += " " + stat.text;
+  }
+  var sentiment = new Sentiment();
+  var result = sentiment.analyze(allTweets);
+  console.dir(result);
 });
 
 // only log text
 //variable for state
 //qualilty check tweets(other search terms)
+
