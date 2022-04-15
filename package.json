@@ -9,6 +9,7 @@
     "run": "to do"
   },
   "dependencies": {
+    "better-sqlite3": "^7.5.1",
     "dotenv": "^16.0.0",
     "JSON": "^1.0.0",
     "sentiment": "^5.0.2",
