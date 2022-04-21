@@ -4,7 +4,7 @@
   "description": "Locational COVID-19 Sentiment Analysis",
   "main": "index.js",
   "scripts": {
-    "install": "to do",
+    "install": "npm install better-sqlite3 dotenv JSON sentiment twitter",
     "test": "to do",
     "run": "to do"
   },
