@@ -25,3 +25,22 @@ app.use(express.json())
 app.use(logging)
 
 app.use(express.static('./public'))
+
+app.get('/app', (req, res, next) => {
+    res.type('text/plain')
+    res.status(200).end('OK')
+})
+
+app.get('/app/log/access', (req, res, next) => {
+    try {
+        const query = db.prepare('SELECT * from accesslog').all()
+        res.status(200).json(query)
+    } catch {
+        console.error(e)
+    }
+})
+
+app.use(function (req, res, next) {
+    res.type('text/plain')
+    res.status(404).end('404 NOT FOUND')
+})
