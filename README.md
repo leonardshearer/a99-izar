@@ -13,10 +13,15 @@ Our project allows users to select a geographic area and view the sentiment towa
 ## Dependencies
 
 better-sqlite3 7.5.1
+
 dotenv 16.0.0
+
 JSON 1.0.0
+
 sentiment 5.0.2
+
 twitter 1.7.1
+
 twitter.js 0.14.0
 
 ## How to Run
