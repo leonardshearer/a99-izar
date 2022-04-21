@@ -26,12 +26,12 @@ app.use(logging)
 
 app.use(express.static('./public'))
 
-app.get('/app', (req, res, next) => {
+app.get('/app/', (req, res, next) => {
     res.type('text/plain')
     res.status(200).end('OK')
 })
 
-app.get('/app/log/access', (req, res, next) => {
+app.get('/app/log/access/', (req, res, next) => {
     try {
         const query = db.prepare('SELECT * from accesslog').all()
         res.status(200).json(query)
