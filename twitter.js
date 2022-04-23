@@ -21,7 +21,7 @@ const apikey = "7bBZ96F5uNzss9lKSFtMoFiEw"
 const ask = "nuHAMKVJUgLnMEAuAhrP8Makd1UkxJcHU04VUdY1Wbmp5BEfK1"
 const at = "1511452233811996672-jdnn7j7lUB4uagfZwrfYt6eq75tQgU"
 const ats = "6WtRhiWy1FLLGa6tJsp5zbM68cg0IpNjazXSGarXjL9Zu"
-
+/*
 var client = new Twitter({
   consumer_key: apikey,
   consumer_secret: ask,
@@ -42,10 +42,20 @@ let allTweets = "";
   var result = sentiment.analyze(allTweets);
   console.dir(result);
 });
-
+*/
 // only log text
 //variable for state
 //qualilty check tweets(other search terms)
+
+app.get('/app/', (req, res) => {
+	// Respond with status 200
+	console.log('fxn');
+	res.statusCode = 200;
+	// Respond with status message "OK"
+	res.statusMessage = 'OK';
+	res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+	res.end(res.statusCode+ ' ' +res.statusMessage)
+});
 
 app.get('/app/sentiment/:state', (req, res) => {
 
@@ -69,9 +79,11 @@ app.get('/app/sentiment/:state', (req, res) => {
       var result = sentiment.analyze(allTweets);
       console.dir(result);
       res.statusCode = 200;
-      res.statusMessage = {result};
-      res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-      res.end(res.statusMessage);
+      //res.statusMessage = JSON.stringify(result).replace(/\r?\n|\r/g, '');
+      var statusMessage = JSON.stringify(result)
+      console.log(res.statusMessage);
+      res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
+      res.end(statusMessage);
     });
 
 });

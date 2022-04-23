@@ -25,3 +25,7 @@ twitter 1.7.1
 twitter.js 0.14.0
 
 ## How to Run
+
+Run node twitter. Point your browser to http://localhost:3000/app/sentiment/{STATE_NAME} 
+For example, http://localhost:3000/app/sentiment/NC to see North Carolina results. The page 
+returns JSON. 
