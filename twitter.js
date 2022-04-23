@@ -1,4 +1,16 @@
 // import state from frontend.js
+const express = require('express')
+const app = express()
+
+const args = require('minimist')(process.argv.slice(2))
+console.log(args)
+args['port']
+const HTTP_PORT  = args.port || process.env.PORT || 3000
+
+const server = app.listen(HTTP_PORT, () => {
+	console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
+});
+
 const { globalVariable } = require('./frontend');
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
@@ -34,4 +46,34 @@ let allTweets = "";
 // only log text
 //variable for state
 //qualilty check tweets(other search terms)
+
+app.get('/app/sentiment/:state', (req, res) => {
+
+    var client = new Twitter({
+    consumer_key: apikey,
+    consumer_secret: ask,
+    access_token_key: at,
+    access_token_secret: ats
+    });
+
+    var str = "covid " + req.params.state + " lang:en"
+    var params = {q:str};
+    client.get('search/tweets', params, function(error, tweets, response) {
+      let allTweets = "";
+
+      for (let i = 0; i < tweets.statuses.length;i++){
+          const stat = tweets.statuses[i];
+          allTweets += " " + stat.text;
+      }
+      var sentiment = new Sentiment();
+      var result = sentiment.analyze(allTweets);
+      console.dir(result);
+      res.statusCode = 200;
+      res.statusMessage = {result};
+      res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+      res.end(res.statusMessage);
+    });
+
+});
+
 
