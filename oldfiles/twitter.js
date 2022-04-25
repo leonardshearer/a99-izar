@@ -47,6 +47,16 @@ let allTweets = "";
 //variable for state
 //qualilty check tweets(other search terms)
 
+app.get('/app/', (req, res) => {
+	// Respond with status 200
+	console.log('fxn');
+	res.statusCode = 200;
+	// Respond with status message "OK"
+	res.statusMessage = 'OK';
+	res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+	res.end(res.statusCode+ ' ' +res.statusMessage)
+});
+
 app.get('/app/sentiment/:state', (req, res) => {
 
     var client = new Twitter({

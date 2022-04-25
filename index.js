@@ -38,10 +38,15 @@ app.use(logging)
 
 app.use(express.static('./dist'))
 
-app.get('/app/', (req, res, next) => {
-    res.type('text/plain')
-    res.status(200).end('OK')
-})
+app.get('/app/', (req, res) => {
+	// Respond with status 200
+	console.log('fxn');
+	res.statusCode = 200;
+	// Respond with status message "OK"
+	res.statusMessage = 'OK';
+	res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+	res.end(res.statusCode+ ' ' +res.statusMessage)
+});
 
 app.get('/app/log/access/', (req, res, next) => {
     try {
