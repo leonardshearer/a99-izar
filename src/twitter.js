@@ -11,7 +11,7 @@ const server = app.listen(HTTP_PORT, () => {
 	console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
 });
 
-const { globalVariable } = require('./frontend');
+const { globalVariable } = require('./oldfiles/frontend');
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
