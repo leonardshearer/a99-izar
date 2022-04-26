@@ -1,12 +1,15 @@
 import express from 'express'
+import minimist from 'minimist'
 import { getAccessDb } from './src/logdatabase.js'
 import getSentiment from './src/twitter.cjs'
 
 const app = express()
-export { app }
+const args = minimist(process.argv.slice(2))
 const db = getAccessDb()
 
-const HTTP_PORT = 5000
+console.log(args)
+
+const HTTP_PORT = (1 <= args.port && args.port <= 65535) ? args.port : 5000
 const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
 })
@@ -49,14 +52,16 @@ app.get('/app/', (req, res) => {
 	res.end(res.statusCode+ ' ' +res.statusMessage)
 });
 
-app.get('/app/log/access/', (req, res, next) => {
-    try {
-        const query = db.prepare('SELECT * from accesslog').all()
-        res.status(200).json(query)
-    } catch {
-        console.error(e)
-    }
-})
+if(args.debug) {
+    app.get('/app/log/access/', (req, res, next) => {
+        try {
+            const query = db.prepare('SELECT * from accesslog').all()
+            res.status(200).json(query)
+        } catch {
+            console.error(e)
+        }
+    })
+}
 
 app.get('/app/sentiment/:state', (req, res, next) => {
     getSentiment(req, res, next);
