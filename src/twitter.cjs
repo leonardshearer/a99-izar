@@ -1,3 +1,4 @@
+// globalVariable is in index.js
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
