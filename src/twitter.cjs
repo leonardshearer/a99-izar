@@ -1,4 +1,3 @@
-const { globalVariable, app } = require("./index.js");
 const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
@@ -34,9 +33,8 @@ let allTweets = "";
 //variable for state
 //qualilty check tweets(other search terms)
 
-app.get('/app/sentiment/:state', (req, res) => {
-
-    var client = new Twitter({
+module.exports = function getSentiment(req, res, next) {
+  var client = new Twitter({
     consumer_key: apikey,
     consumer_secret: ask,
     access_token_key: at,
@@ -62,12 +60,5 @@ app.get('/app/sentiment/:state', (req, res) => {
       res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
       res.end(statusMessage);
     });
-
-});
-
-app.use(function (req, res, next) {
-  res.type('text/plain')
-  res.status(404).end('404 NOT FOUND')
-})
-
+}
 
