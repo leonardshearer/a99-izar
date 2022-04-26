@@ -1,5 +1,6 @@
 import express from 'express'
 import { getAccessDb } from './src/logdatabase.js'
+import getSentiment from './src/twitter.cjs'
 
 const app = express()
 export { app }
@@ -41,7 +42,6 @@ app.use(express.static('./dist'))
 
 app.get('/app/', (req, res) => {
 	// Respond with status 200
-	console.log('fxn');
 	res.statusCode = 200;
 	// Respond with status message "OK"
 	res.statusMessage = 'OK';
@@ -57,6 +57,18 @@ app.get('/app/log/access/', (req, res, next) => {
         console.error(e)
     }
 })
+
+app.get('/app/sentiment/:state', (req, res, next) => {
+    getSentiment(req, res, next);
+});
+
+app.use(function (req, res, next) {
+    res.statusCode = 404;
+	// Respond with status message "OK"
+	res.statusMessage = 'NOT FOUND';
+    res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+	res.end(res.statusCode+ ' ' +res.statusMessage)
+  })
 
 // document.createElement('NC');
 export var globalVariable = {
