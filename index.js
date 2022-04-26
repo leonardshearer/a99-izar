@@ -2,6 +2,7 @@ import express from 'express'
 import { getAccessDb } from './src/logdatabase.js'
 
 const app = express()
+export { app }
 const db = getAccessDb()
 
 const HTTP_PORT = 5000
@@ -55,11 +56,6 @@ app.get('/app/log/access/', (req, res, next) => {
     } catch {
         console.error(e)
     }
-})
-
-app.use(function (req, res, next) {
-    res.type('text/plain')
-    res.status(404).end('404 NOT FOUND')
 })
 
 // document.createElement('NC');
