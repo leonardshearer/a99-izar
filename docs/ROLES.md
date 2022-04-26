@@ -1,11 +1,20 @@
 # Team Roles
 
 User Database (Joseph)
+
 Give users the ability to register an account, update their information, see their information somewhere, and delete their account.
-Interaction Database (Leo)
-Interactions with the front end should be logged in a database.
+
+
+Interaction Database (Leonard)
+
+Log user interactions in a better-sqlite3 database.
+
+
 Front-End (Website) (YuYu)
-Back-End: Twitter API and Sentiment Analysis (Krishna and Neil)
-Get data from twitter api, pass it through sentiment analysis, produce % positive and % negative sentiment
-Access interaction database
-Produce Endpoint
+
+Allow users an access point for the backend analysis.
+
+
+Back-End: Twitter API (Neil) and Sentiment Analysis (Krishna)
+
+Get data from twitter API, pass it through sentiment analysis, produce sentiment graph.
