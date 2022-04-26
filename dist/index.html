@@ -60,6 +60,19 @@
             statisticsLabel.style.padding = '20px';
             left.appendChild(statisticsLabel);
 
+        //     var chart = document.createElement('div');
+        //     chart.setAttribute("class","myDiv")
+        //     var data = [
+        //     {
+        //         x: ['giraffes', 'orangutans', 'monkeys'],
+        //         y: [20, 14, 23],
+        //         type: 'bar'
+        //     }
+        // ];
+        // document.body.appendChild(chart);
+        // Plotly.newPlot('myDiv', data);
+
+
             var settingsLabel = document.createElement('div');
             settingsLabel.innerHTML = 'Settings';
             settingsLabel.style.fontFamily = 'sans-serif';
@@ -79,6 +92,8 @@
                 stateDropdown.appendChild(option);
             }
             left.appendChild(stateDropdown);
+
+
 
             var updateEmailLabel = document.createElement('div');
             updateEmailLabel.innerHTML = 'Update Email';
@@ -144,7 +159,19 @@
             };
             right.appendChild(deleteAccountButton);
         });
-    </script>    
+    </script>  
+        <!-- <div id='myDiv'></div>
+        <script>
+        var data = [
+        {
+            x: ['giraffes', 'orangutans', 'monkeys'],
+            y: [20, 14, 23],
+            type: 'bar'
+        }
+        ];
+    
+        Plotly.newPlot('myDiv', data);
+        </script>   -->
     <!-- <script>
         anychart.onDocumentReady(function(){
            anychart.theme(anychart.themes.darkEarth);
@@ -168,5 +195,20 @@
     </script> -->
 
 </body>
+
+<footer>
+    <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <script>
+    var data = [
+    {
+        x: ['giraffes', 'orangutans', 'monkeys'],
+        y: [20, 14, 23],
+        type: 'bar'
+    }
+    ];
+
+    Plotly.newPlot('myDiv', data);
+    </script> 
+</footer>
 
 </html>
