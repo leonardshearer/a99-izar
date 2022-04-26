@@ -1,18 +1,18 @@
-import { initializeApp } from 'firebase/app'
-import {
-  getFirestore, collection, onSnapshot,
-  addDoc, deleteDoc, doc,
-  query, where,
-  orderBy, serverTimestamp,
-  updateDoc,
-  getDocs
-} from 'firebase/firestore'
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+// import {
+//   getFirestore, collection, onSnapshot,
+//   addDoc, deleteDoc, doc,
+//   query, where,
+//   orderBy, serverTimestamp,
+//   updateDoc,
+//   getDocs
+// } from 'firebase/firestore'
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword, signOut,
   onAuthStateChanged
-} from 'firebase/auth'
+} from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAVXNNKdpdNsjd_R2_fyqwBOQZdtWMs4cU",
@@ -24,24 +24,23 @@ const firebaseConfig = {
 };
 
 // init firebase
-initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 
 // init services
-const db = getFirestore()
 const auth = getAuth()
 
 // collection ref
-const colRef = collection(db, 'books')
+// const colRef = collection(db, 'books')
 
 //testing firestore
-getDocs(colRef)
-    .then((snapshot) => {
-        let books = []
-        snapshot.docs.forEach((doc) => {
-            books.push({ ...doc.data(), id: doc.id})
-        })
-        console.log(books)
-    })
+// getDocs(colRef)
+//     .then((snapshot) => {
+//         let books = []
+//         snapshot.docs.forEach((doc) => {
+//             books.push({ ...doc.data(), id: doc.id})
+//         })
+//         console.log(books)
+//     })
 
 // signing users up
 // const submitclick = document.getElementById("signupsubmit")
@@ -62,12 +61,12 @@ getDocs(colRef)
 // }
 
 window.signupfunction = function() {
-    console.log("working");
+    console.log("sign up working");
     const email = document.getElementById("signupemail").value;
     const password = document.getElementById("signuppassword").value;
     createUserWithEmailAndPassword(auth, email, password)
-    .then(cred => {
-      console.log('user created:', cred.user)
+    .then(userCredential => {
+      const user = userCredential.user
       signupForm.reset()
     })
     .catch(err => {
@@ -93,33 +92,29 @@ window.signupfunction = function() {
 // })
 
 // logging in and out
-const logoutButton = document.querySelector('.logout')
-logoutButton.addEventListener('click', () => {
-  signOut(auth)
-    .then(() => {
-      console.log('user signed out')
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
-})
+// const logoutButton = document.querySelector('.logout')
+// logoutButton.addEventListener('click', () => {
+//   signOut(auth)
+//     .then(() => {
+//       console.log('user signed out')
+//     })
+//     .catch(err => {
+//       console.log(err.message)
+//     })
+// })
 
-const loginForm = document.querySelector('.login')
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-
-  const email = loginForm.email.value
-  const password = loginForm.password.value
-
+window.loginfunction = function() {
+  console.log("log in working");
+  const email = document.getElementById("loginemail").value;
+  const password = document.getElementById("loginpassword").value;
   signInWithEmailAndPassword(auth, email, password)
-    .then(cred => {
-      console.log('user logged in:', cred.user)
-      loginForm.reset()
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
-})
+  .then(userCredential => {
+    const user = userCredential.user;
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
+}
 
 window.onload=function(){
     var item=document.getElementsByClassName("item");
