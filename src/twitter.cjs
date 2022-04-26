@@ -51,15 +51,15 @@ module.exports = function getSentiment(req, res, next) {
           const stat = tweets.statuses[i];
           allTweets += " " + stat.text;
       }
-      var sentiment = new Sentiment();
-      var result = sentiment.analyze(allTweets);
+      var sentimentAPI = new Sentiment();
+      var result = sentimentAPI.analyze(allTweets);
       console.dir(result);
       res.statusCode = 200;
       //res.statusMessage = JSON.stringify(result).replace(/\r?\n|\r/g, '');
-      var statusMessage = JSON.stringify(result)
-      console.log(res.statusMessage);
+      var sentiment = {positive:result.positive.length, negative:result.negative.length}
+      //console.log(res.statusMessage);
       res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
-      res.end(statusMessage);
+      res.end(JSON.stringify(sentiment));
     });
 }
 
