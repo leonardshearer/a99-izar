@@ -36,7 +36,8 @@ const logging = (req, res, next) => {
 
 app.use(express.json())
 
-app.use(logging)
+// TODO: uncomment
+//app.use(logging)
 
 app.use(express.static('./dist'))
 
