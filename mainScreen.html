@@ -2,14 +2,11 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.0.0/themes/dark_earth.min.js" type="text/javascript"></script>
-    <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
-    <!-- <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script> -->
     <title>Document</title>
 </head>
 
@@ -26,10 +23,9 @@
             logoutButton.style.Color = '#FFE08A';
             logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
             logoutButton.style.cursor = 'pointer';
-            logoutButton.onclick = function(){
-                logoutfunction();
+            logoutButton.onclick = function () {
+                alert('Logout clicked');
             };
-            // logoutButton.setAttribute("href","/login.html");
             document.body.appendChild(logoutButton);
 
             logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
@@ -62,29 +58,7 @@
             statisticsLabel.style.fontFamily = 'sans-serif';
             statisticsLabel.style.fontSize = '24px';
             statisticsLabel.style.padding = '20px';
-	    
             left.appendChild(statisticsLabel);
-	    var myDiv = document.getElementById("myDiv");
-	    left.appendChild(myDiv);
-
-            var barChart = document.getElementsByClassName("user-select-none svg-container");
-	    barChart[0].style.position = 'absolute';
-	    barChart[0].style.zIndex = "-1";
-        barChart[0].style.width = "20px";
-
-
-        //     var chart = document.createElement('div');
-        //     chart.setAttribute("class","myDiv")
-        //     var data = [
-        //     {
-        //         x: ['giraffes', 'orangutans', 'monkeys'],
-        //         y: [20, 14, 23],
-        //         type: 'bar'
-        //     }
-        // ];
-        // document.body.appendChild(chart);
-        // Plotly.newPlot('myDiv', data);
-
 
             var settingsLabel = document.createElement('div');
             settingsLabel.innerHTML = 'Settings';
@@ -104,8 +78,10 @@
                 option.innerHTML = states[i];
                 stateDropdown.appendChild(option);
             }
+            $("#statesdropdown").change(function(){
+                stateDropdown  = $(this).val();
+                });
             left.appendChild(stateDropdown);
-
 
             var updateEmailLabel = document.createElement('div');
             updateEmailLabel.innerHTML = 'Update Email';
@@ -116,30 +92,12 @@
             right.appendChild(updateEmailLabel);
 
             var emailInput = document.createElement('input');
-            emailInput.setAttribute("id", "emailInput");
             emailInput.type = 'text';
             emailInput.style.fontFamily = 'sans-serif';
             emailInput.style.fontSize = '14px';
             emailInput.style.padding = '8px';
             emailInput.style.margin = '8px';
             right.appendChild(emailInput);
-
-            var oldPassword = document.createElement('div');
-            oldPassword.innerHTML = 'Old Password';
-            oldPassword.style.fontFamily = 'sans-serif';
-            oldPassword.style.fontSize = '14px';
-            oldPassword.style.padding = '8px';
-            oldPassword.style.margin = '8px';
-            right.appendChild(oldPassword);
-
-            var oldPasswordInput = document.createElement('input');
-            oldPassword.setAttribute("id", "oldPasswordInput");
-            oldPasswordInput.type = 'text';
-            oldPasswordInput.style.fontFamily = 'sans-serif';
-            oldPasswordInput.style.fontSize = '14px';
-            oldPasswordInput.style.padding = '8px';
-            oldPasswordInput.style.margin = '8px';
-            right.appendChild(oldPasswordInput);
 
             var updatePasswordLabel = document.createElement('div');
             updatePasswordLabel.innerHTML = 'Update Password';
@@ -150,7 +108,6 @@
             right.appendChild(updatePasswordLabel);
 
             var passwordInput = document.createElement('input');
-            passwordInput.setAttribute("id", "passwordInput");
             passwordInput.type = 'password';
             passwordInput.style.fontFamily = 'sans-serif';
             passwordInput.style.fontSize = '14px';
@@ -159,9 +116,6 @@
             right.appendChild(passwordInput);
 
             var submitButton = document.createElement('div');
-            submitButton.onclick = function() {
-                changePasswordEmailFunction();
-            };
             submitButton.innerHTML = 'Submit';
             submitButton.style.fontFamily = 'sans-serif';
             submitButton.style.fontSize = '14px';
@@ -172,6 +126,9 @@
             submitButton.style.border = '1px solid #999';
             submitButton.style.borderRadius = '4px';
             submitButton.style.cursor = 'pointer';
+            submitButton.onclick = function () {
+                alert('Submit clicked');
+            };
             right.appendChild(submitButton);
 
             var deleteAccountButton = document.createElement('div');
@@ -190,49 +147,29 @@
             };
             right.appendChild(deleteAccountButton);
         });
-    </script>  
-        <!-- <div id='myDiv'></div>
-        <script>
-        var data = [
-        {
-            x: ['giraffes', 'orangutans', 'monkeys'],
-            y: [20, 14, 23],
-            type: 'bar'
-        }
-        ];
-    
-        Plotly.newPlot('myDiv', data);
-        </script>   -->
-    
+    </script>    
+    <!-- <script>
+        anychart.onDocumentReady(function(){
+           anychart.theme(anychart.themes.darkEarth);
+           var data={
+               header: ["Name","Death toll"],
+               rows:[
+                   ["San-Francisco (1906)", 1500],
+                   ["Messina (1908)", 87000],
+                   ["Ashgabat (1948)", 175000],
+                   ["Chile (1960)", 10000],
+                   ["Tian Shan (1976)", 242000],
+                   ["Armenia (1988)", 25000],
+                   ["Iran (1990)", 50000]
+               ]};
+            var chart=anychart.column();
+            chart.data(data);
+            chart.title("The deadliest earthquakes in the XXth century");
+            chart.container("container");
+            chart.draw();
+        });
+    </script> -->
 
 </body>
-
-<footer>
-    <div id='myDiv'></div>
-    <script>
-    var data = [
-    {
-        x: ['positive', 'negative'],
-        y: [5, 2],
-        type: 'bar',
-    }
-    ];
-    var layout = {
-    autosize: false,
-    width: 700,
-    height: 500,
-    margin: {
-        l: 50,
-        r: 50,
-        b: 100,
-        t: 100,
-        pad: 4,
-        title: '% of tweets analysed by sentiment',
-        showlegend: false
-    }};
-
-    Plotly.newPlot('myDiv', data,layout,{staticPlot: true});
-    </script> 
-</footer>
 
 </html>
