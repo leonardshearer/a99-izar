@@ -11,7 +11,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword, signOut,
-  onAuthStateChanged
+  onAuthStateChanged, deleteUser, updatePassword, updateEmail
 } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 
 const firebaseConfig = {
@@ -110,6 +110,7 @@ window.loginfunction = function() {
   signInWithEmailAndPassword(auth, email, password)
   .then(userCredential => {
     const user = userCredential.user;
+    location.href = '/index.html';
   })
   .catch(err => {
     console.log(err.message)
@@ -119,6 +120,7 @@ window.loginfunction = function() {
 window.logoutfunction = function() {
   console.log("logout working");
   auth.signOut();
+  location.href = '/login.html';
 };
 
 window.changePasswordEmailFunction = function() {
@@ -126,15 +128,13 @@ window.changePasswordEmailFunction = function() {
   const currentPassword = document.getElementById("oldPasswordInput").value;
   const newPassword = document.getElementById("passwordInput").value;
   const newEmail = document.getElementById("emailInput").value;
-  this.reauthenticate(currentPassword).then(() => {
-  var user = firebase.auth().currentUser;
+  const user = auth.currentUser;
   user.updatePassword(newPassword).then(() => {
     console.log("Password updated!");
   }).catch((error) => { console.log(error); });
   user.updateEmail(newEmail).then(() => {
       console.log("Email updated!");
   }).catch((error) => { console.log(error); });
-}).catch((error) => { console.log(error); });
 }
 
 window.onload=function(){
