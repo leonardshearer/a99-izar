@@ -4,9 +4,9 @@
   "description": "Locational COVID-19 Sentiment Analysis",
   "main": "index.js",
   "scripts": {
-    "install": "npm install express better-sqlite3 dotenv JSON sentiment twitter plotly.js-dist-min",
-    "test": "to do",
-    "run": "to do"
+    "install": "npm install express better-sqlite3 dotenv JSON sentiment twitter minimist nodemon plotly.js-dist-min",
+    "test": "npx nodemon index.js --port=5000 --debug",
+    "run": "npx nodemon index.js --port=5000"
   },
   "dependencies": {
     "better-sqlite3": "^7.5.1",
