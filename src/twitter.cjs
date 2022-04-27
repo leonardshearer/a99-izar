@@ -56,7 +56,10 @@ module.exports = function getSentiment(req, res, next) {
       console.dir(result);
       res.statusCode = 200;
       //res.statusMessage = JSON.stringify(result).replace(/\r?\n|\r/g, '');
-      var sentiment = {positive:result.positive.length, negative:result.negative.length}
+      var sentiment = { x: ["positive", "negative"],
+      y: [result.positive, result.negative],
+      type: 'bar'
+    }
       //console.log(res.statusMessage);
       res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
       res.end(JSON.stringify(sentiment));
