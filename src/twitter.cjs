@@ -3,7 +3,6 @@ const { text } = require('stream/consumers');
 var Twitter = require('twitter');
 // require('dotenv/config');
 var Sentiment = require('sentiment'); 
-module.exports = positive,negative;
 
 const apikey = "7bBZ96F5uNzss9lKSFtMoFiEw"
 const ask = "nuHAMKVJUgLnMEAuAhrP8Makd1UkxJcHU04VUdY1Wbmp5BEfK1"
@@ -34,6 +33,8 @@ let allTweets = "";
 // only log text
 //variable for state
 //qualilty check tweets(other search terms)
+var positive;
+var negative;
 
 module.exports = function getSentiment(req, res, next) {
   var client = new Twitter({
@@ -57,10 +58,13 @@ module.exports = function getSentiment(req, res, next) {
       console.dir(result);
       res.statusCode = 200;
       //res.statusMessage = JSON.stringify(result).replace(/\r?\n|\r/g, '');
-      var sentiment = {positive:result.positive.length, negative:result.negative.length}
+      var sentiment = { x: ["positive", "negative"],
+      y: [result.positive, result.negative],
+      type: 'bar'
+    }
       //console.log(res.statusMessage);
-      var positive = result.positive.length
-      var negative = result.negative.length
+      positive = result.positive.length
+      negative = result.negative.length
       document.getElementById("numOfPlaces").innerText = tempCountPlaces;
       // document.getElementById("numOfP laces").innerText = tempCountPlaces;
 
@@ -69,5 +73,5 @@ module.exports = function getSentiment(req, res, next) {
     });
 }
 
-
+module.exports = positive, negative;
 
