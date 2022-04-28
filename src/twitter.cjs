@@ -65,7 +65,9 @@ module.exports = function getSentiment(req, res, next) {
       //console.log(res.statusMessage);
       positive = result.positive.length
       negative = result.negative.length
-      document.getElementById("numOfPlaces").innerText = tempCountPlaces;
+      document.getElementById("posi").innerHTML = positive;
+      document.getElementById("negi").innerHTML = negative;
+
       // document.getElementById("numOfP laces").innerText = tempCountPlaces;
 
       res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
