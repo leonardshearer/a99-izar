@@ -13,7 +13,7 @@
 
 <body>
     <script>
-        window.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
             var logoutButton = document.createElement('div');
             logoutButton.innerHTML = 'Logout';
@@ -94,7 +94,14 @@
             dropdownSubmit.setAttribute('value', 'Search');
             
             function createChart() {
-                dropdownSubmit.setAttribute('value', "help")
+                var url = 'localhost:5000/app/sentiment/'+stateDropdown.value
+                fetch(url)
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    .then(function (result) {
+                        dropdownSubmit.setAttribute('value', result)
+                    })                
             }
             dropdownSubmit.onclick = function() {
                 createChart()
@@ -196,7 +203,7 @@
     <script>
         var data = [{
                 x: ['Positive', 'Negative'],
-                y: [0, 0],
+                y: [1, 2],
                 type: 'bar',
             }];
             var layout = {

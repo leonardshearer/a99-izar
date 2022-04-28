@@ -69,7 +69,7 @@ module.exports = function getSentiment(req, res, next) {
       // document.getElementById("numOfP laces").innerText = tempCountPlaces;
 
       res.writeHead( res.statusCode, { 'Content-Type' : 'application/json' });
-      res.end(JSON.stringify(sentiment));
+      res.status(200).json(sentiment)
     });
 }
 
