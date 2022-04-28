@@ -59,14 +59,14 @@ module.exports = function getSentiment(req, res, next) {
       res.statusCode = 200;
       //res.statusMessage = JSON.stringify(result).replace(/\r?\n|\r/g, '');
       var sentiment = { x: ["positive", "negative"],
-      y: [result.positive, result.negative],
+      y: [result.positive.length, result.negative.length],
       type: 'bar'
     }
       //console.log(res.statusMessage);
-      positive = result.positive.length
-      negative = result.negative.length
-      document.getElementById("posi").innerHTML = positive;
-      document.getElementById("negi").innerHTML = negative;
+      // positive = result.positive.length
+      // negative = result.negative.length
+      // document.getElementById("posi").innerHTML = positive;
+      // document.getElementById("negi").innerHTML = negative;
 
       // document.getElementById("numOfP laces").innerText = tempCountPlaces;
 
@@ -74,6 +74,4 @@ module.exports = function getSentiment(req, res, next) {
       res.end(JSON.stringify(sentiment));
     });
 }
-
-module.exports = positive, negative;
 
