@@ -110,7 +110,7 @@ window.loginfunction = function() {
   signInWithEmailAndPassword(auth, email, password)
   .then(userCredential => {
     const user = userCredential.user;
-    location.href = '/index.html';
+    location.href = '/homepage.html';
   })
   .catch(err => {
     console.log(err.message)
@@ -120,7 +120,7 @@ window.loginfunction = function() {
 window.logoutfunction = function() {
   console.log("logout working");
   auth.signOut();
-  location.href = '/login.html';
+  location.href = '/homepage.html';
 };
 
 window.changePasswordEmailFunction = function() {
