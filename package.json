@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "install": "npm install express better-sqlite3 dotenv JSON sentiment twitter minimist nodemon plotly.js-dist-min",
-    "test": "npx nodemon index.js --port=5000 --debug",
-    "run": "npx nodemon index.js --port=5000"
+    "test": "npx nodemon index.js --port=5555 --debug",
+    "run": "npx nodemon index.js --port=5555"
   },
   "dependencies": {
     "better-sqlite3": "^7.5.1",
     "dotenv": "^16.0.0",
-    "express": "^4.18.0",
+    "express": "^4.18.1",
     "firebase": "^9.6.11",
     "JSON": "^1.0.0",
+    "minimist": "^1.2.6",
+    "nodemon": "^2.0.16",
     "plotly.js-dist-min": "^2.11.1",
     "require": "^0.4.4",
     "sentiment": "^5.0.2",
