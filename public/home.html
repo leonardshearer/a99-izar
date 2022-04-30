@@ -143,6 +143,22 @@
             emailInput.style.margin = '8px';
             right.appendChild(emailInput);
 
+            var submitNewEmail = document.createElement('div');
+            submitNewEmail.onclick = function () {
+                //changePasswordEmailFunction();
+            };
+            submitNewEmail.innerHTML = 'Update Email';
+            submitNewEmail.style.fontFamily = 'sans-serif';
+            submitNewEmail.style.fontSize = '14px';
+            submitNewEmail.style.padding = '8px';
+            submitNewEmail.style.margin = '8px';
+            submitNewEmail.style.width = '150px';
+            submitNewEmail.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            submitNewEmail.style.border = '1px solid #999';
+            submitNewEmail.style.borderRadius = '4px';
+            submitNewEmail.style.cursor = 'pointer';
+            right.appendChild(submitNewEmail);
+
             var oldPassword = document.createElement('div');
             oldPassword.innerHTML = 'Old Password';
             oldPassword.style.fontFamily = 'sans-serif';
@@ -153,7 +169,7 @@
 
             var oldPasswordInput = document.createElement('input');
             oldPassword.setAttribute("id", "oldPasswordInput");
-            oldPasswordInput.type = 'text';
+            oldPasswordInput.type = 'password';
             oldPasswordInput.style.fontFamily = 'sans-serif';
             oldPasswordInput.style.fontSize = '14px';
             oldPasswordInput.style.padding = '8px';
@@ -161,7 +177,7 @@
             right.appendChild(oldPasswordInput);
 
             var updatePasswordLabel = document.createElement('div');
-            updatePasswordLabel.innerHTML = 'Update Password';
+            updatePasswordLabel.innerHTML = 'New Password';
             updatePasswordLabel.style.fontFamily = 'sans-serif';
             updatePasswordLabel.style.fontSize = '14px';
             updatePasswordLabel.style.padding = '8px';
@@ -177,21 +193,21 @@
             passwordInput.style.margin = '8px';
             right.appendChild(passwordInput);
 
-            var submitButton = document.createElement('div');
-            submitButton.onclick = function () {
+            var submitUpdatePassword = document.createElement('div');
+            submitUpdatePassword.onclick = function () {
                 changePasswordEmailFunction();
             };
-            submitButton.innerHTML = 'Submit';
-            submitButton.style.fontFamily = 'sans-serif';
-            submitButton.style.fontSize = '14px';
-            submitButton.style.padding = '8px';
-            submitButton.style.margin = '8px';
-            submitButton.style.width = '100px';
-            submitButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            submitButton.style.border = '1px solid #999';
-            submitButton.style.borderRadius = '4px';
-            submitButton.style.cursor = 'pointer';
-            right.appendChild(submitButton);
+            submitUpdatePassword.innerHTML = 'Update Password';
+            submitUpdatePassword.style.fontFamily = 'sans-serif';
+            submitUpdatePassword.style.fontSize = '14px';
+            submitUpdatePassword.style.padding = '8px';
+            submitUpdatePassword.style.margin = '8px';
+            submitUpdatePassword.style.width = '150px';
+            submitUpdatePassword.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            submitUpdatePassword.style.border = '1px solid #999';
+            submitUpdatePassword.style.borderRadius = '4px';
+            submitUpdatePassword.style.cursor = 'pointer';
+            right.appendChild(submitUpdatePassword);
 
             var deleteAccountButton = document.createElement('div');
             deleteAccountButton.innerHTML = 'Delete Account';
@@ -199,7 +215,7 @@
             deleteAccountButton.style.fontSize = '14px';
             deleteAccountButton.style.padding = '8px';
             deleteAccountButton.style.margin = '8px';
-            deleteAccountButton.style.width = '100px';
+            deleteAccountButton.style.width = '150px';
             deleteAccountButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
             deleteAccountButton.style.border = '1px solid #999';
             deleteAccountButton.style.borderRadius = '4px';
