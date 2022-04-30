@@ -65,29 +65,47 @@ app.get('/app/sentiment/:state', (req, res, next) => {
     getSentiment(req, res, next);
 });
 
-// app.get('/app/user/register', (req, res, next) => {
+app.get('/app/user/register/:user', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
-// });
+app.get('/app/user/login/:user', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
-// app.get('/app/user/login', (req, res, next) => {
+app.get('/app/user/logout', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
-// });
+app.get('/app/user/changeemail', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
-// app.get('/app/user/logout', (req, res, next) => {
+app.get('/app/user/changepassword', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
-// });
-
-// app.get('/app/user/changeemail', (req, res, next) => {
-
-// });
-
-// app.get('/app/user/changepassword', (req, res, next) => {
-
-// });
-
-// app.get('/app/user/delete', (req, res, next) => {
-
-// });
+app.get('/app/user/delete', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
 
 app.use(function (req, res, next) {
     res.statusCode = 404;
