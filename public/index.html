@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" type="text/css" href="login.css" />
+    <script type="module" src="login.js"></script>
+</head>
+
+<body>
+    <div class="control">
+        <div class="item">
+            <div class="active">Log In</div>
+            <div>Register</div>
+        </div>
+        <div class="content">
+            <div style="display:block;">
+                <p>Email</p>
+                <input type="text" placeholder="email" id="loginemail" />
+                <p>Password</p>
+                <input type="password" placeholder="password" id="loginpassword" />
+                <br>
+                <input type="submit" value="Submit" id="loginsubmit" onclick="loginfunction()" />
+            </div>
+            <div>
+                <p>Email</p>
+                <input type="text" placeholder="email" id="signupemail" />
+                <p>Password</p>
+                <input type="password" placeholder="password" id="signuppassword" />
+                <br>
+                <input type="submit" value="Register" id="signupsubmit" onclick="signupfunction()" />
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

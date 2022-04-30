@@ -39,20 +39,18 @@ const logging = (req, res, next) => {
 
 app.use(express.json())
 
-//app.use(logging)
+app.use(logging)
 
-app.use(express.static('./dist'))
+app.use(express.static('./public'))
 
 app.get('/app/', (req, res) => {
-	// Respond with status 200
-	res.statusCode = 200;
-	// Respond with status message "OK"
-	res.statusMessage = 'OK';
-	res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-	res.end(res.statusCode+ ' ' +res.statusMessage)
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
 });
 
-if(args.debug) {
+if (args.debug) {
     app.get('/app/log/access/', (req, res, next) => {
         try {
             const query = db.prepare('SELECT * from accesslog').all()
@@ -67,15 +65,51 @@ app.get('/app/sentiment/:state', (req, res, next) => {
     getSentiment(req, res, next);
 });
 
+app.get('/app/user/register/:user', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
+app.get('/app/user/login/:user', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
+app.get('/app/user/logout', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
+app.get('/app/user/changeemail', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
+app.get('/app/user/changepassword', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
+app.get('/app/user/delete', (req, res, next) => {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+});
+
 app.use(function (req, res, next) {
     res.statusCode = 404;
-	// Respond with status message "OK"
-	res.statusMessage = 'NOT FOUND';
-    res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-	res.end(res.statusCode+ ' ' +res.statusMessage)
-  })
-
-
-export var globalVariable = {
-    state : "South Carolina"
- };
+    res.statusMessage = 'NOT FOUND';
+    res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
+    res.end(res.statusCode + ' ' + res.statusMessage)
+})

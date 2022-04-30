@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
+    <title>COVID-19 Sentiment Analysis</title>
+</head>
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var logoutButton = document.createElement('div');
+            logoutButton.innerHTML = 'Logout';
+            logoutButton.style.position = 'absolute';
+            logoutButton.style.top = '15px';
+            logoutButton.style.right = '15px';
+            logoutButton.style.padding = '10px';
+            logoutButton.style.Color = '#FFE08A';
+            logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            logoutButton.style.cursor = 'pointer';
+            logoutButton.onclick = function () {
+                logoutfunction();
+            };
+            // logoutButton.setAttribute("href","/login.html");
+            document.body.appendChild(logoutButton);
+
+            logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
+
+            logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            logoutButton.style.Color = '#FFE08A';
+            logoutButton.style.border = '1px solid #999';
+            logoutButton.style.borderRadius = '4px';
+            logoutButton.style.fontFamily = 'sans-serif';
+            logoutButton.style.fontSize = '14px';
+            logoutButton.style.padding = '8px';
+            logoutButton.style.textAlign = 'center';
+            logoutButton.style.width = '80px';
+
+            var left = document.createElement('div');
+            left.style.backgroundColor = '#CCC';
+            left.style.float = 'left';
+            left.style.width = '50%';
+            left.style.height = '100%';
+            document.body.appendChild(left);
+            var right = document.createElement('div');
+            right.style.backgroundColor = '#FFE08A';
+            right.style.float = 'left';
+            right.style.width = '50%';
+            right.style.height = '700px';
+            document.body.appendChild(right);
+
+            var statisticsLabel = document.createElement('div');
+            statisticsLabel.innerHTML = 'COVID-19 Sentiment Analysis';
+            statisticsLabel.style.fontFamily = 'sans-serif';
+            statisticsLabel.style.fontSize = '24px';
+            statisticsLabel.style.padding = '20px';
+            left.appendChild(statisticsLabel);
+
+            var settingsLabel = document.createElement('div');
+            settingsLabel.innerHTML = 'Settings';
+            settingsLabel.style.fontFamily = 'sans-serif';
+            settingsLabel.style.fontSize = '24px';
+            settingsLabel.style.padding = '20px';
+            right.appendChild(settingsLabel);
+
+            var stateDropdown = document.createElement('select');
+            stateDropdown.style.fontFamily = 'sans-serif';
+            stateDropdown.style.fontSize = '14px';
+            stateDropdown.style.padding = '8px';
+            stateDropdown.style.margin = '8px';
+            var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+            for (var i = 0; i < states.length; i++) {
+                var option = document.createElement('option');
+                option.innerHTML = states[i];
+                stateDropdown.appendChild(option);
+            }
+            var dropdownSubmit = document.createElement('button');
+            dropdownSubmit.setAttribute('type', 'button');
+            dropdownSubmit.innerHTML = "Search";
+
+            function createChart() {
+                var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/sentiment/' + stateDropdown.value
+                fetch(url)
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    .then(function (result) {
+                        var layout = {
+                            title: {
+                                text: stateDropdown.value + ' COVID-19 Twitter Sentiment'
+                            },
+                            xaxis: {
+                                title: {
+                                    text: 'Keyword type'
+                                }
+                            },
+                            yaxis: {
+                                title: {
+                                    text: 'Keyword count'
+                                }
+                            },
+                            autosize: false,
+                            width: 700,
+                            height: 500,
+                            margin: {
+                                l: 50,
+                                r: 50,
+                                b: 100,
+                                t: 100,
+                                pad: 4
+                            }
+                        };
+                        Plotly.newPlot('chart', [result], layout, { staticPlot: true });
+                    });
+            }
+            dropdownSubmit.onclick = function () {
+                createChart()
+            }
+            left.appendChild(stateDropdown);
+            left.appendChild(dropdownSubmit);
+
+            var chart = document.createElement('div');
+            chart.setAttribute('id', 'chart')
+            left.appendChild(chart);
+
+            var updateEmailLabel = document.createElement('div');
+            updateEmailLabel.innerHTML = 'Update Email';
+            updateEmailLabel.style.fontFamily = 'sans-serif';
+            updateEmailLabel.style.fontSize = '14px';
+            updateEmailLabel.style.padding = '8px';
+            updateEmailLabel.style.margin = '8px';
+            right.appendChild(updateEmailLabel);
+
+            var emailInput = document.createElement('input');
+            emailInput.setAttribute("id", "emailInput");
+            emailInput.type = 'text';
+            emailInput.style.fontFamily = 'sans-serif';
+            emailInput.style.fontSize = '14px';
+            emailInput.style.padding = '8px';
+            emailInput.style.margin = '8px';
+            right.appendChild(emailInput);
+
+            var submitNewEmail = document.createElement('div');
+            submitNewEmail.onclick = function () {
+                //changePasswordEmailFunction();
+            };
+            submitNewEmail.innerHTML = 'Update Email';
+            submitNewEmail.style.fontFamily = 'sans-serif';
+            submitNewEmail.style.fontSize = '14px';
+            submitNewEmail.style.padding = '8px';
+            submitNewEmail.style.margin = '8px';
+            submitNewEmail.style.width = '150px';
+            submitNewEmail.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            submitNewEmail.style.border = '1px solid #999';
+            submitNewEmail.style.borderRadius = '4px';
+            submitNewEmail.style.cursor = 'pointer';
+            right.appendChild(submitNewEmail);
+
+            var oldPassword = document.createElement('div');
+            oldPassword.innerHTML = 'Old Password';
+            oldPassword.style.fontFamily = 'sans-serif';
+            oldPassword.style.fontSize = '14px';
+            oldPassword.style.padding = '8px';
+            oldPassword.style.margin = '8px';
+            right.appendChild(oldPassword);
+
+            var oldPasswordInput = document.createElement('input');
+            oldPassword.setAttribute("id", "oldPasswordInput");
+            oldPasswordInput.type = 'password';
+            oldPasswordInput.style.fontFamily = 'sans-serif';
+            oldPasswordInput.style.fontSize = '14px';
+            oldPasswordInput.style.padding = '8px';
+            oldPasswordInput.style.margin = '8px';
+            right.appendChild(oldPasswordInput);
+
+            var updatePasswordLabel = document.createElement('div');
+            updatePasswordLabel.innerHTML = 'New Password';
+            updatePasswordLabel.style.fontFamily = 'sans-serif';
+            updatePasswordLabel.style.fontSize = '14px';
+            updatePasswordLabel.style.padding = '8px';
+            updatePasswordLabel.style.margin = '0px';
+            right.appendChild(updatePasswordLabel);
+
+            var passwordInput = document.createElement('input');
+            passwordInput.setAttribute("id", "passwordInput");
+            passwordInput.type = 'password';
+            passwordInput.style.fontFamily = 'sans-serif';
+            passwordInput.style.fontSize = '14px';
+            passwordInput.style.padding = '8px';
+            passwordInput.style.margin = '8px';
+            right.appendChild(passwordInput);
+
+            var submitUpdatePassword = document.createElement('div');
+            submitUpdatePassword.onclick = function () {
+                changePasswordEmailFunction();
+            };
+            submitUpdatePassword.innerHTML = 'Update Password';
+            submitUpdatePassword.style.fontFamily = 'sans-serif';
+            submitUpdatePassword.style.fontSize = '14px';
+            submitUpdatePassword.style.padding = '8px';
+            submitUpdatePassword.style.margin = '8px';
+            submitUpdatePassword.style.width = '150px';
+            submitUpdatePassword.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            submitUpdatePassword.style.border = '1px solid #999';
+            submitUpdatePassword.style.borderRadius = '4px';
+            submitUpdatePassword.style.cursor = 'pointer';
+            right.appendChild(submitUpdatePassword);
+
+            var deleteAccountButton = document.createElement('div');
+            deleteAccountButton.innerHTML = 'Delete Account';
+            deleteAccountButton.style.fontFamily = 'sans-serif';
+            deleteAccountButton.style.fontSize = '14px';
+            deleteAccountButton.style.padding = '8px';
+            deleteAccountButton.style.margin = '8px';
+            deleteAccountButton.style.width = '150px';
+            deleteAccountButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            deleteAccountButton.style.border = '1px solid #999';
+            deleteAccountButton.style.borderRadius = '4px';
+            deleteAccountButton.style.cursor = 'pointer';
+            deleteAccountButton.onclick = function () {
+                alert('Delete Account clicked');
+            };
+            right.appendChild(deleteAccountButton);
+        });
+    </script>
+</body>
+
+</html>
