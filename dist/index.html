@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
             logoutButton.style.Color = '#FFE08A';
             logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
             logoutButton.style.cursor = 'pointer';
-            logoutButton.onclick = function(){
+            logoutButton.onclick = function () {
                 logoutfunction();
             };
             // logoutButton.setAttribute("href","/login.html");
@@ -64,28 +64,28 @@
             statisticsLabel.style.fontFamily = 'sans-serif';
             statisticsLabel.style.fontSize = '24px';
             statisticsLabel.style.padding = '20px';
-	    
+
             left.appendChild(statisticsLabel);
-	    var myDiv = document.getElementById("myDiv");
-	    left.appendChild(myDiv);
+            var myDiv = document.getElementById("myDiv");
+            left.appendChild(myDiv);
 
             var barChart = document.getElementsByClassName("user-select-none svg-container");
-	    barChart[0].style.position = 'absolute';
-	    barChart[0].style.zIndex = "-1";
-        barChart[0].style.width = "20px";
+            barChart[0].style.position = 'absolute';
+            barChart[0].style.zIndex = "-1";
+            barChart[0].style.width = "20px";
 
 
-        //     var chart = document.createElement('div');
-        //     chart.setAttribute("class","myDiv")
-        //     var data = [
-        //     {
-        //         x: ['giraffes', 'orangutans', 'monkeys'],
-        //         y: [20, 14, 23],
-        //         type: 'bar'
-        //     }
-        // ];
-        // document.body.appendChild(chart);
-        // Plotly.newPlot('myDiv', data);
+            //     var chart = document.createElement('div');
+            //     chart.setAttribute("class","myDiv")
+            //     var data = [
+            //     {
+            //         x: ['giraffes', 'orangutans', 'monkeys'],
+            //         y: [20, 14, 23],
+            //         type: 'bar'
+            //     }
+            // ];
+            // document.body.appendChild(chart);
+            // Plotly.newPlot('myDiv', data);
 
 
             var settingsLabel = document.createElement('div');
@@ -107,39 +107,39 @@
             //     stateDropdown.appendChild(option);
             // }
             // left.appendChild(stateDropdown);
-            var dropdownForm = document.createElement('form');
-        var stateDropdown = document.createElement('select');
-        stateDropdown.style.fontFamily = 'sans-serif';
-        stateDropdown.style.fontSize = '14px';
-        stateDropdown.style.padding = '8px';
-        stateDropdown.style.margin = '8px';
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-        for (var i = 0; i < states.length; i++) {
-            var option = document.createElement('option');
-            option.innerHTML = states[i];
-            stateDropdown.appendChild(option);
-        }
-        var dropdownSubmit = document.createElement('input');
-        dropdownSubmit.setAttribute('type', 'submit');
-        dropdownSubmit.setAttribute('value', 'Search');
-        
-        function createChart() {
-            var url = 'localhost:5000/app/sentiment/colorado'
-            fetch(url)
-                .then(function (response) {
-                    return response.json()
-                })
-                .then(function (result) {
-                    dropdownSubmit.setAttribute('value', result.x);
-                });           
-            //dropdownSubmit.setAttribute('value', 'bad');
-        }
-        dropdownSubmit.onclick = function() {
-            createChart()
-        }
-        dropdownForm.appendChild(stateDropdown);
-        dropdownForm.appendChild(dropdownSubmit);
-        left.appendChild(dropdownForm);
+            var stateDropdown = document.createElement('select');
+            stateDropdown.style.fontFamily = 'sans-serif';
+            stateDropdown.style.fontSize = '14px';
+            stateDropdown.style.padding = '8px';
+            stateDropdown.style.margin = '8px';
+            var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+            for (var i = 0; i < states.length; i++) {
+                var option = document.createElement('option');
+                option.innerHTML = states[i];
+                stateDropdown.appendChild(option);
+            }
+            var dropdownSubmit = document.createElement('button');
+            dropdownSubmit.setAttribute('type', 'button');
+            dropdownSubmit.innerHTML = "Search";
+
+            function createChart() {
+                var help = document.createElement('div')
+                left.appendChild(help)
+                var url = document.baseURI + 'app/sentiment/' + stateDropdown.value
+                help.innerHTML = url
+                fetch(url)
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    .then(function (result) {
+                        help.innerHTML = JSON.stringify(result)
+                    });
+            }
+            dropdownSubmit.onclick = function () {
+                createChart()
+            }
+            left.appendChild(stateDropdown);
+            left.appendChild(dropdownSubmit);
 
 
             var updateEmailLabel = document.createElement('div');
@@ -194,7 +194,7 @@
             right.appendChild(passwordInput);
 
             var submitButton = document.createElement('div');
-            submitButton.onclick = function() {
+            submitButton.onclick = function () {
                 changePasswordEmailFunction();
             };
             submitButton.innerHTML = 'Submit';
@@ -202,7 +202,7 @@
             submitButton.style.fontSize = '14px';
             submitButton.style.padding = '8px';
             submitButton.style.margin = '8px';
-            submitButton.style.width='100px';
+            submitButton.style.width = '100px';
             submitButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
             submitButton.style.border = '1px solid #999';
             submitButton.style.borderRadius = '4px';
@@ -215,7 +215,7 @@
             deleteAccountButton.style.fontSize = '14px';
             deleteAccountButton.style.padding = '8px';
             deleteAccountButton.style.margin = '8px';
-            deleteAccountButton.style.width='100px';
+            deleteAccountButton.style.width = '100px';
             deleteAccountButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
             deleteAccountButton.style.border = '1px solid #999';
             deleteAccountButton.style.borderRadius = '4px';
@@ -225,8 +225,8 @@
             };
             right.appendChild(deleteAccountButton);
         });
-    </script>  
-        <!-- <div id='myDiv'></div>
+    </script>
+    <!-- <div id='myDiv'></div>
         <script>
         var data = [
         {
@@ -238,7 +238,7 @@
     
         Plotly.newPlot('myDiv', data);
         </script>   -->
-    
+
 
 </body>
 
@@ -247,31 +247,32 @@
     <script>
 
 
-    console.log(document.getElementById("posi"))
+        console.log(document.getElementById("posi"))
 
-    var data = [
-    {
-        x: ['positive', 'negative'],
-        y: [document.getElementById("posi"),document.getElementById("negi")],
-        type: 'bar',
-    }
-    ];
-    var layout = {
-    autosize: false,
-    width: 700,
-    height: 500,
-    margin: {
-        l: 50,
-        r: 50,
-        b: 100,
-        t: 100,
-        pad: 4,
-        title: {text:'% of tweets analysed by sentiment'},
-        showlegend: false
-    }};
+        var data = [
+            {
+                x: ['positive', 'negative'],
+                y: [document.getElementById("posi"), document.getElementById("negi")],
+                type: 'bar',
+            }
+        ];
+        var layout = {
+            autosize: false,
+            width: 700,
+            height: 500,
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4,
+                title: { text: '% of tweets analysed by sentiment' },
+                showlegend: false
+            }
+        };
 
-    Plotly.newPlot('myDiv', data,layout,{staticPlot: true});
-    </script> 
+        Plotly.newPlot('myDiv', data, layout, { staticPlot: true });
+    </script>
 </footer>
 
 </html>
