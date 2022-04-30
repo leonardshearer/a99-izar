@@ -15,12 +15,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAVXNNKdpdNsjd_R2_fyqwBOQZdtWMs4cU",
-    authDomain: "a99-izar-a634d.firebaseapp.com",
-    projectId: "a99-izar-a634d",
-    storageBucket: "a99-izar-a634d.appspot.com",
-    messagingSenderId: "1123701224",
-    appId: "1:1123701224:web:f8c751105c279fa358545d"
+  apiKey: "AIzaSyAVXNNKdpdNsjd_R2_fyqwBOQZdtWMs4cU",
+  authDomain: "a99-izar-a634d.firebaseapp.com",
+  projectId: "a99-izar-a634d",
+  storageBucket: "a99-izar-a634d.appspot.com",
+  messagingSenderId: "1123701224",
+  appId: "1:1123701224:web:f8c751105c279fa358545d"
 };
 
 // init firebase
