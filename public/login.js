@@ -60,27 +60,24 @@ const auth = getAuth()
 //     })
 // }
 
-auth.onAuthStateChanged(user => {
-  if (user) {
-    window.location = 'home.html'
-  }
-})
+// auth.onAuthStateChanged(user => {
+//   if (user) {
+//     window.location = 'home.html'
+//   }
+// })
 
 window.signupfunction = function () {
+  console.log("sign up working");
   const email = document.getElementById("signupemail").value;
   const password = document.getElementById("signuppassword").value;
-  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/register/' + email;
-  fetch(url).then(function (response) {
-    return response
-  })
   createUserWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      const user = userCredential.user
-      signupForm.reset()
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+  .then(userCredential => {
+    const user = userCredential.user
+    signupForm.reset()
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
 }
 
 // const signupForm = document.getElementById('signupsubmit')
@@ -113,19 +110,17 @@ window.signupfunction = function () {
 // })
 
 window.loginfunction = function () {
+  console.log("log in working");
   const email = document.getElementById("loginemail").value;
   const password = document.getElementById("loginpassword").value;
-  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/login/' + email;
-  fetch(url).then(function (response) {
-    return response
-  })
   signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+  .then(userCredential => {
+    const user = userCredential.user;
+    location.href = '/home.html';
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
 }
 
 window.logoutfunction = function () {
