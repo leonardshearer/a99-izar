@@ -25,7 +25,6 @@
             logoutButton.onclick = function () {
                 logoutfunction();
             };
-            // logoutButton.setAttribute("href","/login.html");
             document.body.appendChild(logoutButton);
             //logout button
             logoutButton.style.backgroundColor = 'rgba(0,0,0,0.5)';
@@ -147,7 +146,8 @@
 
             var submitNewEmail = document.createElement('div');
             submitNewEmail.onclick = function () {
-                //changePasswordEmailFunction();
+                alert('Email changed');
+                changeEmailFunction();
             };
             submitNewEmail.innerHTML = 'Update Email';
             submitNewEmail.style.fontFamily = 'sans-serif';
@@ -197,7 +197,8 @@
 
             var submitUpdatePassword = document.createElement('div');
             submitUpdatePassword.onclick = function () {
-                changePasswordEmailFunction();
+                alert('Password changed')
+                changePasswordFunction();
             };
             submitUpdatePassword.innerHTML = 'Update Password';
             submitUpdatePassword.style.fontFamily = 'sans-serif';
@@ -223,7 +224,8 @@
             deleteAccountButton.style.borderRadius = '4px';
             deleteAccountButton.style.cursor = 'pointer';
             deleteAccountButton.onclick = function () {
-                alert('Delete Account clicked');
+                alert('Account deleted');
+                deleteAccountFunction();
             };
             right.appendChild(deleteAccountButton);
         });

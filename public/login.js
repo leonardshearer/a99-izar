@@ -1,12 +1,4 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
-// import {
-//   getFirestore, collection, onSnapshot,
-//   addDoc, deleteDoc, doc,
-//   query, where,
-//   orderBy, serverTimestamp,
-//   updateDoc,
-//   getDocs
-// } from 'firebase/firestore'
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,12 +7,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAVXNNKdpdNsjd_R2_fyqwBOQZdtWMs4cU",
-  authDomain: "a99-izar-a634d.firebaseapp.com",
-  projectId: "a99-izar-a634d",
-  storageBucket: "a99-izar-a634d.appspot.com",
-  messagingSenderId: "1123701224",
-  appId: "1:1123701224:web:f8c751105c279fa358545d"
+  apiKey: "AIzaSyDrLAiIyZQZI5SSFIGXKWpXWpQYUyToVyM",
+  authDomain: "comp426izar.firebaseapp.com",
+  projectId: "comp426izar",
+  storageBucket: "comp426izar.appspot.com",
+  messagingSenderId: "790153031810",
+  appId: "1:790153031810:web:ed307d6902b5811a9a049b"
 };
 
 // init firebase
@@ -29,121 +21,107 @@ const app = initializeApp(firebaseConfig);
 // init services
 const auth = getAuth()
 
-// collection ref
-// const colRef = collection(db, 'books')
-
-//testing firestore
-// getDocs(colRef)
-//     .then((snapshot) => {
-//         let books = []
-//         snapshot.docs.forEach((doc) => {
-//             books.push({ ...doc.data(), id: doc.id})
-//         })
-//         console.log(books)
-//     })
-
-// signing users up
-// const submitclick = document.getElementById("signupsubmit")
-// const signupForm = document.querySelector('.signup')
-// submitclick.onclick = function(){
-//     console.log("working")
-//   const email = signupForm.email.value
-//   const password = signupForm.password.value
-
-//   createUserWithEmailAndPassword(auth, email, password)
-//     .then(cred => {
-//       console.log('user created:', cred.user)
-//       signupForm.reset()
-//     })
-//     .catch(err => {
-//       console.log(err.message)
-//     })
-// }
-
-// auth.onAuthStateChanged(user => {
-//   if (user) {
-//     window.location = 'home.html'
-//   }
-// })
-
+// Create new user in firebase
 window.signupfunction = function () {
-  console.log("sign up working");
   const email = document.getElementById("signupemail").value;
   const password = document.getElementById("signuppassword").value;
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/register/' + email
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
   createUserWithEmailAndPassword(auth, email, password)
-  .then(userCredential => {
-    const user = userCredential.user
-    signupForm.reset()
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
+    .then(userCredential => {
+      const user = userCredential.user
+      signupForm.reset()
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
 }
 
-// const signupForm = document.getElementById('signupsubmit')
-// signupForm.addEventListener('click', (e) => {
-//   e.preventDefault()
-
-//   const email = document.getElementById("signupemail").value
-//   const password = document.getElementById("signuppassword").value
-
-//   createUserWithEmailAndPassword(auth, email, password)
-//     .then(cred => {
-//       console.log('user created:', cred.user)
-//       signupForm.reset()
-//     })
-//     .catch(err => {
-//       console.log(err.message)
-//     })
-// })
-
-// logging in and out
-// const logoutButton = document.querySelector('.logout')
-// logoutButton.addEventListener('click', () => {
-//   signOut(auth)
-//     .then(() => {
-//       console.log('user signed out')
-//     })
-//     .catch(err => {
-//       console.log(err.message)
-//     })
-// })
-
+// Log in existing user
 window.loginfunction = function () {
-  console.log("log in working");
   const email = document.getElementById("loginemail").value;
   const password = document.getElementById("loginpassword").value;
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/login/' + email
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
   signInWithEmailAndPassword(auth, email, password)
-  .then(userCredential => {
-    const user = userCredential.user;
-    location.href = '/home.html';
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
+    .then(userCredential => {
+      const user = userCredential.user;
+      location.href = '/home.html';
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
 }
 
+// Log out user
 window.logoutfunction = function () {
-  auth.signOut();
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/logout/'
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
+  signOut(auth).then(() => {
+    console.log('Log out successful')
+  }).catch((error) => {
+    console.log('Log out failed.');
+  })
   location.href = '/index.html';
-  // var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/logout';
-  // fetch(url).then(function (response) {
-  //   return response
-  // })
 };
 
-window.changePasswordEmailFunction = function () {
-  console.log("change password/email function called");
-  const currentPassword = document.getElementById("oldPasswordInput").value;
-  const newPassword = document.getElementById("passwordInput").value;
+// Change email
+window.changeEmailFunction = function () {
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/changeemail'
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
   const newEmail = document.getElementById("emailInput").value;
   const user = auth.currentUser;
-  user.updatePassword(newPassword).then(() => {
-    console.log("Password updated!");
-  }).catch((error) => { console.log(error); });
-  user.updateEmail(newEmail).then(() => {
+  updateEmail(user, newEmail).then(() => {
     console.log("Email updated!");
   }).catch((error) => { console.log(error); });
+}
+
+// Change password
+window.changePasswordFunction = function () {
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/changepassword'
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
+  const currentPassword = document.getElementById("oldPasswordInput").value;
+  const newPassword = document.getElementById("passwordInput").value;
+  const user = auth.currentUser;
+  signInWithEmailAndPassword(auth, user.email, currentPassword)
+    .then(userCredential => {
+      console.log('Authenticated')
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+  updatePassword(user, newPassword).then(() => {
+    console.log("Password updated!");
+  }).catch((error) => { console.log(error); });
+}
+
+// Change password
+window.deleteAccountFunction = function () {
+  var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/user/delete'
+  fetch(url)
+    .then(function (response) {
+      return response.json()
+    })
+  const user = auth.currentUser;
+  deleteUser(user).then(() => {
+    console.log("Account deleted!");
+  }).catch((error) => { console.log(error); });
+  location.href = '/index.html';
 }
 
 window.onload = function () {
