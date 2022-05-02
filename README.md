@@ -24,4 +24,12 @@ To run download/pull files from https://github.com/comp426-2022-spring/a99-izar 
 
 ## How to Run
 
-To run simply download or pull the files then run npm install and the npm test. You can then open  up the localhost:5555 on your browser. Then you should see the login page where you can regiester and login. Once you login you shoulld be able to see the homepage.
+To run simply download or pull the files then run npm install and the npm test. You can then open  up the localhost:5555 on your browser. Then you should see the login page where you can regiester and login. Once you login you should be able to see the homepage.
+
+## Instructions
+0.Download files and run them
+1.Register or Login 
+2.Once on the homepage, use the dropdown to click on a state
+3.Click the submit button
+4.The graph should be visible for the given state now. Use the buttons on the top right of the graph to change the way you view it. 
+5.You can logout, update your account, or delete your account on the righthand side of the page.
