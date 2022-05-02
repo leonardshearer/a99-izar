@@ -54,7 +54,7 @@
             right.style.width = '50%';
             right.style.height = '700px';
             document.body.appendChild(right);
-            
+
             var statisticsLabel = document.createElement('div');
             statisticsLabel.innerHTML = 'COVID-19 Sentiment Analysis';
             statisticsLabel.style.fontFamily = 'sans-serif';
@@ -84,6 +84,7 @@
             dropdownSubmit.setAttribute('type', 'button');
             dropdownSubmit.innerHTML = "Search";
 
+            // Call /app/sentiment/:state endpoint and pass the result into a Plotly graph
             function createChart() {
                 var url = location.protocol + '//' + location.hostname + ':' + location.port + '/app/sentiment/' + stateDropdown.value
                 fetch(url)
@@ -105,9 +106,7 @@
                                     text: 'Keyword count'
                                 }
                             },
-                            autosize: false,
-                            width: 1200,
-                            height: 580,
+                            autosize: true,
                             margin: {
                                 l: 50,
                                 r: 50,
@@ -232,8 +231,8 @@
     <h1>Instructions</h1>
     <p>
         1. Go to the dropdown menu and select a state.<br>
-        2. Hit the submit button.<br> 
-        3. View the graph.<br> 
+        2. Hit the submit button.<br>
+        3. View the graph.<br>
         4. Explore more features on the top right corner of the graph.
     </p>
 </body>
