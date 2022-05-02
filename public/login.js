@@ -55,7 +55,7 @@ window.loginfunction = function () {
       location.href = '/home.html';
     })
     .catch(err => {
-      console.log(err.message)
+      window.alert('Invalid email/password combination.')
     })
 }
 
@@ -98,16 +98,19 @@ window.changePasswordFunction = function () {
   const currentPassword = document.getElementById("oldPasswordInput").value;
   const newPassword = document.getElementById("passwordInput").value;
   const user = auth.currentUser;
+  var shouldExit = false;
   signInWithEmailAndPassword(auth, user.email, currentPassword)
     .then(userCredential => {
       console.log('Authenticated')
     })
     .catch(err => {
-      console.log(err.message)
+      console.log('Authentication failed')
     })
-  updatePassword(user, newPassword).then(() => {
-    console.log("Password updated!");
-  }).catch((error) => { console.log(error); });
+  if (!shouldExit) {
+    updatePassword(user, newPassword).then(() => {
+      console.log('Password changed')
+    }).catch((error) => { console.log(error); });
+  }
 }
 
 // Change password
