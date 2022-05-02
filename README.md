@@ -45,4 +45,6 @@ The frontend of the website is created using a combination of HTML, CSS, and Jav
 Ideas
 https://docs.google.com/document/d/1_deFIbn060b8ypZBWJSGPnqILBLC3JqM8esqJppSUVU/edit?usp=sharing
 
-We used GroupMe to communicate and fix issues.
+To plan individual tasks, we used the Projects tab on GitHub.
+
+We used GroupMe to communicate and bring up issues.
