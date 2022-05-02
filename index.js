@@ -3,7 +3,7 @@ import minimist from 'minimist'
 import { getAccessDb } from './src/logdatabase.js'
 import getSentiment from './src/twitter.cjs'
 
-// See docs/endpoints.md for query examples
+// See docs/ENDPOINTS.md for query examples
 
 const app = express()
 const args = minimist(process.argv.slice(2))

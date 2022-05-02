@@ -39,3 +39,10 @@ In your terminal, run either npm run or npm test. You can then open  up the loca
 ## Software Architecture
 
 The frontend of the website is created using a combination of HTML, CSS, and JavaScript. To login, the site is connected to Firebase, which has its own user account functions. The graph is generated using Plotly. All user interactions trigger a call to an endpoint, which either has some functionality (such as obtaining the Twitter sentiment), or simply adds the interaction to the access log. This allows for easy logging of Firebase interactions.
+
+## Planning
+
+Ideas
+https://docs.google.com/document/d/1_deFIbn060b8ypZBWJSGPnqILBLC3JqM8esqJppSUVU/edit?usp=sharing
+
+We used GroupMe to communicate and fix issues.
